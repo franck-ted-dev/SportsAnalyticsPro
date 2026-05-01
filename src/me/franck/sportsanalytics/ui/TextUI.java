@@ -93,6 +93,14 @@ public class TextUI {
     }
 
     private void statistics(){
-
+        System.out.println();
+        if(league.isEmpty()){
+            System.out.println("The league is empty!");
+            System.out.println("No statistics available!");
+            return;
+        }
+        System.out.println("TEAM RECORDS");
+        Team team = league.getBestAttack();
+        System.out.println("The best attack: " + team.getName() + " (" + StatisticsEngine.numberScoaredGoals(team) +" goals)");
     }
 }

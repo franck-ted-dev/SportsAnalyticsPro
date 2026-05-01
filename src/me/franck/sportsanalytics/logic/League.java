@@ -93,4 +93,14 @@ public class League {
         listTeam.sort(byPointsAndByGoals);
         return listTeam;
     }
+
+    public Team getBestAttack(){
+        Team toReturn = Collections.max(teams.values(), Comparator.comparing(StatisticsEngine::numberScoaredGoals));
+        return this.teams.values().stream()
+                .max(Comparator.comparing(StatisticsEngine::numberScoaredGoals)).get();
+    }
+
+    public boolean isEmpty(){
+        return this.teams.isEmpty();
+    }
 }
