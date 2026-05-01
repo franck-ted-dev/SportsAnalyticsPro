@@ -39,25 +39,32 @@ public class TextUI {
         }
     }
 
+    // interface pour informations sur une equipe
     private void teamSearch(){
         System.out.println();
-        System.out.print("Enter team name: ");
+        System.out.print("Enter team name: ");  // recupere le nom de l'equipe
         String teamName = scanner.nextLine();
 
         System.out.println();
 
-        //if(!league.isTeam(teamName)){
-            //System.out.println("This is not a team of our league!");
-            //return;
-        //}
+        if(!league.isTeam(teamName)){    // est-ce une equipe de la league ?
+            System.out.println("This is not a team of our league!");
+            return;
+        }
 
-        System.out.println("[RESULTS FOR REAL MADRID]");
+        // envoie le nom de l'equipe a la ligue
+        // et la ligue prepare toutes les statistiques de l'equipe
+        this.league.statistics(teamName);   // Apprete les statistiques de l'equipe
+
+        teamName = teamName.toUpperCase();
+
+        System.out.println("[RESULTS FOR " + teamName + "]");
         System.out.println("-----------------------------------------------------------------");
-        System.out.println("Matches Played: ");
-        System.out.println("Record: ");
-        System.out.println("Points: ");
-        System.out.println("Win Ratio: ");
-        System.out.println("Goals: ");
+        System.out.println("Matches Played:   ");
+        System.out.println("Record:           ");
+        System.out.println("Points:           ");
+        System.out.println("Win Ratio:        ");
+        System.out.println("Goals:            ");
         System.out.println("-----------------------------------------------------------------");
         return;
     }

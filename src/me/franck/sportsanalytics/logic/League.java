@@ -37,6 +37,16 @@ public class League {
         return this.teams.containsKey(name);
     }
 
+    // la ligue recoit le nom de l'equipe
+    // et fait preparer ses statistiques
+    // elle cree une instance de StatisticsEngine specialement
+    // pour cette equipe
+    public StatisticsEngine statistics(String teamName){
+        Team team = this.teams.get(teamName);
+        StatisticsEngine stats = new StatisticsEngine(team);
+        return stats;
+    }
+
     // ajouter un match
     public void addMatch(Match matchToAdd){
         // ajoute d'abord un match
