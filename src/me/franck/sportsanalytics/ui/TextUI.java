@@ -69,7 +69,10 @@ public class TextUI {
     }
 
     private void currentStanding(){
-
+        System.out.println();
+        System.out.println("[CURRENT STANDINGS]");
+        System.out.println("Rank    | Team           | Points | Games | W | D | L | GS | GC | GD");
+        System.out.println("1.      | Bayern Munich  | 9      | 4     | 3 | 0 | 1 | 25 | 2  | 23");
     }
 
     private void statistics(){
