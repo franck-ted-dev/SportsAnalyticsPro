@@ -13,7 +13,7 @@ public class StatisticsEngine {
     }
 
     public int numberScoaredGoals(){
-        return this.team.getNumberScoredGoals()
+        return this.team.getNumberScoredGoals();
     }
 
     public int numberConcecedGoals(){
@@ -21,6 +21,22 @@ public class StatisticsEngine {
     }
 
     public int numberPoints(){
-        return 0;
+        return 3*team.getNumberWins()+team.getNumberDraws();
+    }
+
+    public double winRatio(){
+        return team.getNumberWins()*1.0/team.getNumberMatches();
+    }
+
+    public int numberDraws(){
+        return team.getNumberDraws();
+    }
+
+    public int numberWins(){
+        return team.getNumberWins();
+    }
+
+    public int numberLoses(){
+        return team.getNumberLoses();
     }
 }

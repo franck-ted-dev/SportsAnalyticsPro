@@ -1,6 +1,7 @@
 package me.franck.sportsanalytics.ui;
 import java.util.Scanner;
 import me.franck.sportsanalytics.logic.League;
+import me.franck.sportsanalytics.logic.StatisticsEngine;
 
 public class TextUI {
     private Scanner scanner;
@@ -54,17 +55,15 @@ public class TextUI {
 
         // envoie le nom de l'equipe a la ligue
         // et la ligue prepare toutes les statistiques de l'equipe
-        this.league.statistics(teamName);   // Apprete les statistiques de l'equipe
+        StatisticsEngine stats = this.league.statistics(teamName);   // Apprete les statistiques de l'equipe
 
-        teamName = teamName.toUpperCase();
-
-        System.out.println("[RESULTS FOR " + teamName + "]");
+        System.out.println("[RESULTS FOR " + teamName.toUpperCase() + "]");
         System.out.println("-----------------------------------------------------------------");
-        System.out.println("Matches Played:   ");
-        System.out.println("Record:           ");
-        System.out.println("Points:           ");
-        System.out.println("Win Ratio:        ");
-        System.out.println("Goals:            ");
+        System.out.println("Matches Played:   " + stats.numberMatches());
+        System.out.println("Record:           " + stats.numberWins() + " Wins, " + stats.numberDraws() + " Draws, " + stats.numberLoses() + " Losses");
+        System.out.println("Points:           " + stats.numberPoints());
+        System.out.println("Win Ratio:        " + stats.winRatio() + "%");
+        System.out.println("Goals:            " + stats.numberScoaredGoals() + " scored, " + stats.numberConcecedGoals() + " conceded");
         System.out.println("-----------------------------------------------------------------");
         return;
     }

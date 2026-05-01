@@ -36,8 +36,10 @@ public class DataLoader {
                 // chaque ligne correcte correspond a un match.
                 this.league.addMatch(new Match(homeTeam, awayTeam, homeScore, awayScore));
             }
+            System.out.println("Data loaded succesfully!");
         }catch(Exception e){
             System.out.println("Error: Data couldn't be loaded!");
+            e.printStackTrace();
         }
     }
 }

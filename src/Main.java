@@ -12,6 +12,7 @@ public class Main {
         DataLoader dataLoader = new DataLoader("data.csv", league);
         TextUI userInterface = new TextUI(scanner, league);
 
+        dataLoader.readFile();
         userInterface.start();
     }
 }
