@@ -4,38 +4,65 @@ import me.franck.sportsanalytics.model.Team;
 public class StatisticsEngine {
 
     public static int numberMatches(Team team){
-        return team.statistics.getNumberMatches();
+        if(team == null){ // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberMatches();
     }
 
     public static int numberScoaredGoals(Team team){
-        return team.statistics.getNumberScoredGoals();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberScoredGoals();
     }
 
     public static int numberConcecedGoals(Team team){
-        return team.statistics.getNumberConcededGoals();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberConcededGoals();
     }
 
     public static int numberPoints(Team team){
-        return 3*team.statistics.getNumberWins()+team.statistics.getNumberDraws();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return 3*team.getStatistics().getNumberWins()+team.getStatistics().getNumberDraws();
     }
 
     public static double winRatio(Team team){
-        return team.statistics.getNumberWins()*1.0/team.statistics.getNumberMatches()*100;
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberWins()*1.0/team.getStatistics().getNumberMatches()*100;
     }
 
     public static int numberDraws(Team team){
-        return team.statistics.getNumberDraws();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberDraws();
     }
 
     public static int numberWins(Team team){
-        return team.statistics.getNumberWins();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberWins();
     }
 
     public static int numberLoses(Team team){
-        return team.statistics.getNumberLoses();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberLoses();
     }
 
     public static int differenceGoals(Team team){
-        return team.statistics.getNumberScoredGoals()- team.statistics.getNumberConcededGoals();
+        if(team == null){  // n'est pas cense arrive, mais bon!!!
+            return 0;
+        }
+        return team.getStatistics().getNumberScoredGoals()- team.getStatistics().getNumberConcededGoals();
     }
 }

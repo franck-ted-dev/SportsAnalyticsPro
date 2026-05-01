@@ -1,8 +1,8 @@
 package me.franck.sportsanalytics.model;
 
 public class Team {
-    public Stats statistics;
-    public String name;
+    private Stats statistics;
+    private String name;
 
     public Team(String name){
         this.name = name;
@@ -31,5 +31,13 @@ public class Team {
 
     public void addLose(){
         this.statistics.addLose();
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public Stats getStatistics(){
+        return this.statistics;
     }
 }

@@ -64,16 +64,4 @@ public class Stats {
     public void addDraw() {
         this.numberDraws++;
     }
-
-    public int numberPoints(){
-        return 3*numberWins+numberDraws;
-    }
-
-    public double winRatio(){
-        return 1.0*numberWins/numberMatches*100;
-    }
-
-    public int differenceGoals(){
-        return numberScoredGoals - numberConcededGoals;
-    }
 }

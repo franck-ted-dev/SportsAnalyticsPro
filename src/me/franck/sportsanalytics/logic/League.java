@@ -2,7 +2,6 @@ package me.franck.sportsanalytics.logic;
 import me.franck.sportsanalytics.model.Stats;
 import me.franck.sportsanalytics.model.Team;
 import me.franck.sportsanalytics.model.Match;
-import java.util.Collections;
 
 import java.util.*;
 
@@ -78,16 +77,19 @@ public class League {
     }
 
     public Stats teamStats(String teamName){
-        return this.teams.get(teamName).statistics;
+        return this.teams.get(teamName).getStatistics();
+    }
+
+    public Team getTeam(String teamName){
+        return this.teams.get(teamName);
     }
 
     public ArrayList<Team> ranking(){
         ArrayList<Team> listTeam = new ArrayList<>(this.teams.values());
         Comparator<Team> byPointsAndByGoals = Comparator
-                .comparing(StatisticsEngine::numberPoints)
-                .thenComparing(StatisticsEngine::differenceGoals)
-                .thenComparing(StatisticsEngine::numberScoaredGoals)
-                .reversed();
+                .comparing(StatisticsEngine::numberPoints, Comparator.reverseOrder())
+                .thenComparing(StatisticsEngine::differenceGoals, Comparator.reverseOrder())
+                .thenComparing(StatisticsEngine::numberScoaredGoals, Comparator.reverseOrder());
         listTeam.sort(byPointsAndByGoals);
         return listTeam;
     }

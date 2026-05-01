@@ -1,7 +1,7 @@
 package me.franck.sportsanalytics.ui;
 import java.util.Scanner;
 import me.franck.sportsanalytics.logic.League;
-import me.franck.sportsanalytics.model.Stats;
+import me.franck.sportsanalytics.logic.StatisticsEngine;
 import me.franck.sportsanalytics.model.Team;
 
 public class TextUI {
@@ -56,19 +56,20 @@ public class TextUI {
 
         // envoie le nom de l'equipe a la ligue
         // et la ligue prepare toutes les statistiques de l'equipe
-        Stats statTeam = this.league.teamStats(teamName);  // Apprete les statistiques de l'equipe
+        Team team = this.league.getTeam(teamName);  // Apprete les statistiques de l'equipe
 
         System.out.println("[RESULTS FOR " + teamName.toUpperCase() + "]");
         System.out.println("-----------------------------------------------------------------");
-        System.out.println("Matches Played:   " + statTeam.getNumberMatches());
-        System.out.println("Record:           " + statTeam.getNumberWins() + " Wins, " + statTeam.getNumberDraws() + " Draws, " + statTeam.getNumberLoses() + " Losses");
-        System.out.println("Points:           " + statTeam.numberPoints());
-        System.out.println("Win Ratio:        " + statTeam.winRatio() + "%");
-        System.out.println("Goals:            " + statTeam.getNumberScoredGoals() + " scored, " + statTeam.getNumberConcededGoals() + " conceded");
+        System.out.println("Matches Played:   " + StatisticsEngine.numberMatches(team));
+        System.out.println("Record:           " + StatisticsEngine.numberWins(team) + " Wins, " + StatisticsEngine.numberDraws(team) + " Draws, " + StatisticsEngine.numberLoses(team) + " Losses");
+        System.out.println("Points:           " + StatisticsEngine.numberPoints(team));
+        System.out.println("Win Ratio:        " + StatisticsEngine.winRatio(team) + "%");
+        System.out.println("Goals:            " + StatisticsEngine.numberScoaredGoals(team) + " scored, " + StatisticsEngine.numberConcecedGoals(team) + " conceded");
         System.out.println("-----------------------------------------------------------------");
         return;
     }
 
+    // affiche le classement de la ligue
     private void currentStanding(){
 
         System.out.println();
@@ -78,15 +79,15 @@ public class TextUI {
         for(Team team : league.ranking()){
             System.out.printf("%-5s | %-14s | %-6s | %-5s | %-3s | %-3s | %-3s | %-4s | %-4s | %-4s%n",
                     pos+".",
-                    team.name,
-                    team.statistics.numberPoints(),
-                    team.statistics.getNumberMatches(),
-                    team.statistics.getNumberWins(),
-                    team.statistics.getNumberDraws(),
-                    team.statistics.getNumberLoses(),
-                    team.statistics.getNumberScoredGoals(),
-                    team.statistics.getNumberConcededGoals(),
-                    team.statistics.differenceGoals());
+                    team.getName(),
+                    StatisticsEngine.numberPoints(team),
+                    StatisticsEngine.numberMatches(team),
+                    StatisticsEngine.numberWins(team),
+                    StatisticsEngine.numberDraws(team),
+                    StatisticsEngine.numberLoses(team),
+                    StatisticsEngine.numberScoaredGoals(team),
+                    StatisticsEngine.numberConcecedGoals(team),
+                    StatisticsEngine.differenceGoals(team));
             pos++;
         }
     }
