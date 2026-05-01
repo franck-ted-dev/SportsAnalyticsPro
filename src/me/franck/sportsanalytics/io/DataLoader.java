@@ -32,6 +32,8 @@ public class DataLoader {
                 if(homeScore < 0 || awayScore < 0){
                     continue;   // un score negatif ? Impossible
                 }
+                // ajoute le match a la ligue
+                // chaque ligne correcte correspond a un match.
                 this.league.addMatch(new Match(homeTeam, awayTeam, homeScore, awayScore));
             }
         }catch(Exception e){

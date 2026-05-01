@@ -39,7 +39,9 @@ public class League {
 
     // ajouter un match
     public void addMatch(Match matchToAdd){
+        // ajoute d'abord un match
         this.matches.add(matchToAdd);
+        // ajuste ensuite les statistiques de chaque equipe du match
         this.update(matchToAdd.getHomeTeam(), matchToAdd.getHomeScore(), matchToAdd.getAwayScore());
         this.update(matchToAdd.getAwayTeam(), matchToAdd.getAwayScore(), matchToAdd.getHomeScore());
     }
