@@ -2,41 +2,40 @@ package me.franck.sportsanalytics.logic;
 import me.franck.sportsanalytics.model.Team;
 
 public class StatisticsEngine {
-    private Team team;
 
-    public StatisticsEngine(Team team){
-        this.team = team;
+    public static int numberMatches(Team team){
+        return team.statistics.getNumberMatches();
     }
 
-    public int numberMatches(){
-        return this.team.getNumberMatches();
+    public static int numberScoaredGoals(Team team){
+        return team.statistics.getNumberScoredGoals();
     }
 
-    public int numberScoaredGoals(){
-        return this.team.getNumberScoredGoals();
+    public static int numberConcecedGoals(Team team){
+        return team.statistics.getNumberConcededGoals();
     }
 
-    public int numberConcecedGoals(){
-        return this.team.getNumberConcededGoals();
+    public static int numberPoints(Team team){
+        return 3*team.statistics.getNumberWins()+team.statistics.getNumberDraws();
     }
 
-    public int numberPoints(){
-        return 3*team.getNumberWins()+team.getNumberDraws();
+    public static double winRatio(Team team){
+        return team.statistics.getNumberWins()*1.0/team.statistics.getNumberMatches()*100;
     }
 
-    public double winRatio(){
-        return team.getNumberWins()*1.0/team.getNumberMatches()*100;
+    public static int numberDraws(Team team){
+        return team.statistics.getNumberDraws();
     }
 
-    public int numberDraws(){
-        return team.getNumberDraws();
+    public static int numberWins(Team team){
+        return team.statistics.getNumberWins();
     }
 
-    public int numberWins(){
-        return team.getNumberWins();
+    public static int numberLoses(Team team){
+        return team.statistics.getNumberLoses();
     }
 
-    public int numberLoses(){
-        return team.getNumberLoses();
+    public static int differenceGoals(Team team){
+        return team.statistics.getNumberScoredGoals()- team.statistics.getNumberConcededGoals();
     }
 }

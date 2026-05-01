@@ -1,10 +1,10 @@
 package me.franck.sportsanalytics.logic;
+import me.franck.sportsanalytics.model.Stats;
 import me.franck.sportsanalytics.model.Team;
 import me.franck.sportsanalytics.model.Match;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Collections;
+
+import java.util.*;
 
 public class League {
     private final Map<String, Team> teams;
@@ -68,10 +68,6 @@ public class League {
     // et fait preparer ses statistiques,
     // elle crée une instance de StatisticsEngine specialement
     // pour cette equipe
-    public StatisticsEngine statistics(String teamName){
-        Team team = this.teams.get(teamName);
-        return new StatisticsEngine(team);
-    }
 
     // ajouter un match
     public void addMatch(Match matchToAdd){
@@ -79,5 +75,20 @@ public class League {
         this.matches.add(matchToAdd);
         // ajuste ensuite les statistiques de chaque equipe du match
         this.update(matchToAdd);
+    }
+
+    public Stats teamStats(String teamName){
+        return this.teams.get(teamName).statistics;
+    }
+
+    public ArrayList<Team> ranking(){
+        ArrayList<Team> listTeam = new ArrayList<>(this.teams.values());
+        Comparator<Team> byPointsAndByGoals = Comparator
+                .comparing(StatisticsEngine::numberPoints)
+                .thenComparing(StatisticsEngine::differenceGoals)
+                .thenComparing(StatisticsEngine::numberScoaredGoals)
+                .reversed();
+        listTeam.sort(byPointsAndByGoals);
+        return listTeam;
     }
 }

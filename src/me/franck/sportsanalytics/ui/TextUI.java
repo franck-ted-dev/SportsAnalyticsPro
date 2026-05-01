@@ -1,7 +1,8 @@
 package me.franck.sportsanalytics.ui;
 import java.util.Scanner;
 import me.franck.sportsanalytics.logic.League;
-import me.franck.sportsanalytics.logic.StatisticsEngine;
+import me.franck.sportsanalytics.model.Stats;
+import me.franck.sportsanalytics.model.Team;
 
 public class TextUI {
     private Scanner scanner;
@@ -55,24 +56,39 @@ public class TextUI {
 
         // envoie le nom de l'equipe a la ligue
         // et la ligue prepare toutes les statistiques de l'equipe
-        StatisticsEngine stats = this.league.statistics(teamName);   // Apprete les statistiques de l'equipe
+        Stats statTeam = this.league.teamStats(teamName);  // Apprete les statistiques de l'equipe
 
         System.out.println("[RESULTS FOR " + teamName.toUpperCase() + "]");
         System.out.println("-----------------------------------------------------------------");
-        System.out.println("Matches Played:   " + stats.numberMatches());
-        System.out.println("Record:           " + stats.numberWins() + " Wins, " + stats.numberDraws() + " Draws, " + stats.numberLoses() + " Losses");
-        System.out.println("Points:           " + stats.numberPoints());
-        System.out.println("Win Ratio:        " + stats.winRatio() + "%");
-        System.out.println("Goals:            " + stats.numberScoaredGoals() + " scored, " + stats.numberConcecedGoals() + " conceded");
+        System.out.println("Matches Played:   " + statTeam.getNumberMatches());
+        System.out.println("Record:           " + statTeam.getNumberWins() + " Wins, " + statTeam.getNumberDraws() + " Draws, " + statTeam.getNumberLoses() + " Losses");
+        System.out.println("Points:           " + statTeam.numberPoints());
+        System.out.println("Win Ratio:        " + statTeam.winRatio() + "%");
+        System.out.println("Goals:            " + statTeam.getNumberScoredGoals() + " scored, " + statTeam.getNumberConcededGoals() + " conceded");
         System.out.println("-----------------------------------------------------------------");
         return;
     }
 
     private void currentStanding(){
+
         System.out.println();
         System.out.println("[CURRENT STANDINGS]");
-        System.out.println("Rank    | Team           | Points | Games | W | D | L | GS | GC | GD");
-        System.out.println("1.      | Bayern Munich  | 9      | 4     | 3 | 0 | 1 | 25 | 2  | 23");
+        System.out.println("Rank  | Team           | Points | Games |  W  |  D  |  L  |  GS  |  GC  |  GD ");
+        int pos = 1;
+        for(Team team : league.ranking()){
+            System.out.printf("%-5s | %-14s | %-6s | %-5s | %-3s | %-3s | %-3s | %-4s | %-4s | %-4s%n",
+                    pos+".",
+                    team.name,
+                    team.statistics.numberPoints(),
+                    team.statistics.getNumberMatches(),
+                    team.statistics.getNumberWins(),
+                    team.statistics.getNumberDraws(),
+                    team.statistics.getNumberLoses(),
+                    team.statistics.getNumberScoredGoals(),
+                    team.statistics.getNumberConcededGoals(),
+                    team.statistics.differenceGoals());
+            pos++;
+        }
     }
 
     private void statistics(){
