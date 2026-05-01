@@ -31,8 +31,8 @@ public class Team {
         return numberConcededGoals;
     }
 
-    public void setNumberMatches(int number) {
-        this.numberMatches += number;
+    public void addMatch() {
+        this.numberMatches++;
     }
 
     public void setNumberScoredGoals(int number) {

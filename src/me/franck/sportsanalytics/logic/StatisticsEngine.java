@@ -25,7 +25,7 @@ public class StatisticsEngine {
     }
 
     public double winRatio(){
-        return team.getNumberWins()*1.0/team.getNumberMatches();
+        return team.getNumberWins()*1.0/team.getNumberMatches()*100;
     }
 
     public int numberDraws(){

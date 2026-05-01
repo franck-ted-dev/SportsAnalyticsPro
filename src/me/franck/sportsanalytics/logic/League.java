@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class League {
-    private Map<String, Team> teams;
-    private List<Match> matches;
+    private final Map<String, Team> teams;
+    private final List<Match> matches;
 
     public League(){
         this.matches = new ArrayList<>();
@@ -21,15 +21,42 @@ public class League {
     }
 
     // update les statistiques d'une équipe
-    public void update(String nameTeam, int scoaredGoals, int concededGoals){
-        // cree l'equipe si necessaire
-        if(!this.isTeam(nameTeam)){
-           this.addTeam(nameTeam);
+    public void update(Match match){
+        String homeTeam = match.getHomeTeam();
+        String awayTeam = match.getAwayTeam();
+        int homeScore = match.getHomeScore();
+        int awayScore = match.getAwayScore();
+        // cree l'equipe a domicile si necessaire
+        if(!this.isTeam(homeTeam)){
+           this.addTeam(homeTeam);
         }
         // ajuste ses statistiques
-        this.teams.get(nameTeam).setNumberMatches(1);
-        this.teams.get(nameTeam).setNumberConcededGoals(concededGoals);
-        this.teams.get(nameTeam).setNumberScoredGoals(scoaredGoals);
+        this.teams.get(homeTeam).addMatch();
+        this.teams.get(homeTeam).setNumberConcededGoals(awayScore);
+        this.teams.get(homeTeam).setNumberScoredGoals(homeScore);
+
+        // pareil avec l'equipe a l'exterieur
+        if(!this.isTeam(awayTeam)){
+            this.addTeam(awayTeam);
+        }
+        this.teams.get(awayTeam).addMatch();
+        this.teams.get(awayTeam).setNumberConcededGoals(homeScore);
+        this.teams.get(awayTeam).setNumberScoredGoals(awayScore);
+
+        // s'il s'agit d'un match nul
+        if(match.isDraw()){
+            this.teams.get(homeTeam).addDraw();
+            this.teams.get(awayTeam).addDraw();
+            return;
+        }
+
+        if(awayTeam.equals(match.getWinner())){
+            this.teams.get(awayTeam).addWin();
+            this.teams.get(homeTeam).addLose();
+        }else{
+            this.teams.get(homeTeam).addWin();
+            this.teams.get(awayTeam).addLose();
+        }
     }
 
     // verifie si name est une equipe de la ligue
@@ -38,13 +65,12 @@ public class League {
     }
 
     // la ligue recoit le nom de l'equipe
-    // et fait preparer ses statistiques
-    // elle cree une instance de StatisticsEngine specialement
+    // et fait preparer ses statistiques,
+    // elle crée une instance de StatisticsEngine specialement
     // pour cette equipe
     public StatisticsEngine statistics(String teamName){
         Team team = this.teams.get(teamName);
-        StatisticsEngine stats = new StatisticsEngine(team);
-        return stats;
+        return new StatisticsEngine(team);
     }
 
     // ajouter un match
@@ -52,7 +78,6 @@ public class League {
         // ajoute d'abord un match
         this.matches.add(matchToAdd);
         // ajuste ensuite les statistiques de chaque equipe du match
-        this.update(matchToAdd.getHomeTeam(), matchToAdd.getHomeScore(), matchToAdd.getAwayScore());
-        this.update(matchToAdd.getAwayTeam(), matchToAdd.getAwayScore(), matchToAdd.getHomeScore());
+        this.update(matchToAdd);
     }
 }
