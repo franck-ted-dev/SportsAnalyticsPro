@@ -28,4 +28,28 @@ public class Match {
     public int getAwayScore() {
         return awayScore;
     }
+
+    public String getWinner(){
+        if(awayScore > homeScore){
+            return awayTeam;
+        }else if(homeScore > awayScore){
+            return homeTeam;
+        }else{
+            return null;
+        }
+    }
+
+    public String getLooser(){
+        if(awayScore < homeScore){
+            return awayTeam;
+        }else if(homeScore < awayScore){
+            return homeTeam;
+        }else{
+            return null;
+        }
+    }
+
+    public boolean isDraw(){
+        return awayScore == homeScore;
+    }
 }
