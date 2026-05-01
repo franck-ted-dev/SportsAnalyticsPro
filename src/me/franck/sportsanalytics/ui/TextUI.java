@@ -74,10 +74,10 @@ public class TextUI {
 
         System.out.println();
         System.out.println("[CURRENT STANDINGS]");
-        System.out.println("Rank  | Team           | Points | Games |  W  |  D  |  L  |  GS  |  GC  |  GD ");
+        System.out.println("Rank  | Team               | Points | Games |  W  |  D  |  L  |  GS  |  GC  |  GD ");
         int pos = 1;
         for(Team team : league.ranking()){
-            System.out.printf("%-5s | %-14s | %-6s | %-5s | %-3s | %-3s | %-3s | %-4s | %-4s | %-4s%n",
+            System.out.printf("%-5s | %-18s | %-6s | %-5s | %-3s | %-3s | %-3s | %-4s | %-4s | %-4s%n",
                     pos+".",
                     team.getName(),
                     StatisticsEngine.numberPoints(team),

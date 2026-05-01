@@ -27,19 +27,23 @@ public class DataLoader {
                     continue;  // on ignore les lignes vides
                 }
                 String[] tab = line.split(",");  // on la decoupe
-                if(tab.length < 4){
-                    continue;  // les lignes incompletes sont ignorees.
+                if(tab.length != 4){
+                    throw new Exception("lignes corrompues");
                 }
                 String homeTeam = tab[0].trim();
                 String awayTeam = tab[1].trim();
+                if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
+                    // Tu peux même logger cette erreur spécifique
+                    throw new Exception("Nom d'équipe manquant");
+                }
                 // un match c'est entre 2 equipes differentes.
                 if(homeTeam.equals(awayTeam)){
-                    continue;   // pas un match valide.
+                    throw new Exception("equipes non differentes dans le meme match");
                 }
                 int homeScore = Integer.parseInt(tab[2].trim());
                 int awayScore = Integer.parseInt(tab[3].trim());
                 if(homeScore < 0 || awayScore < 0){
-                    continue;   // un score negatif ? Impossible
+                    throw new Exception("Score negatif");
                 }
                 // ajoute le match a la ligue
                 // chaque ligne correcte correspond a un match.
