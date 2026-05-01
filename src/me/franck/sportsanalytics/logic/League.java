@@ -15,18 +15,32 @@ public class League {
         this.teams = new HashMap<>();
     }
 
-    // ajouter une equipe dans la league
+    // ajouter une équipe dans la league
     public void addTeam(String name){
-        this.teams.putIfAbsent(name, new Team(name));
+        this.teams.put(name, new Team(name));
     }
 
-    // update les statistiques d'une equipe
-    public void update(String name, int concededGoals){
+    // update les statistiques d'une équipe
+    public void update(String nameTeam, int scoaredGoals, int concededGoals){
+        // cree l'equipe si necessaire
+        if(!this.isTeam(nameTeam)){
+           this.addTeam(nameTeam);
+        }
+        // ajuste ses statistiques
+        this.teams.get(nameTeam).setNumberMatches(1);
+        this.teams.get(nameTeam).setNumberConcededGoals(concededGoals);
+        this.teams.get(nameTeam).setNumberScoredGoals(scoaredGoals);
+    }
 
+    // verifie si name est une equipe de la ligue
+    public boolean isTeam(String name){
+        return this.teams.containsKey(name);
     }
 
     // ajouter un match
     public void addMatch(Match matchToAdd){
         this.matches.add(matchToAdd);
+        this.update(matchToAdd.getHomeTeam(), matchToAdd.getHomeScore(), matchToAdd.getAwayScore());
+        this.update(matchToAdd.getAwayTeam(), matchToAdd.getAwayScore(), matchToAdd.getHomeScore());
     }
 }

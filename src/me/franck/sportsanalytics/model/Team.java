@@ -24,4 +24,16 @@ public class Team {
     public int getNumberConcededGoals() {
         return numberConcededGoals;
     }
+
+    public void setNumberMatches(int number) {
+        this.numberMatches += number;
+    }
+
+    public void setNumberScoredGoals(int number) {
+        this.numberScoredGoals += number;
+    }
+
+    public void setNumberConcededGoals(int number) {
+        this.numberConcededGoals += number;
+    }
 }
