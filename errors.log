@@ -28,3 +28,8 @@ Erreur ligne : PSG, Arsenal, absent, 1 | Raison : For input string: "absent"
 Erreur ligne : Inter Milan, Arsenal, 1, | Raison : lignes corrompues
 Erreur ligne : AC Milan, Real Madrid, -1, 3 | Raison : Score negatif
 Erreur ligne : , Club Brugge, 0, 1 | Raison : Nom d'équipe manquant
+Erreur ligne : Bayern Munich, Bayern Munich, 2, 2 | Raison : equipes non differentes dans le meme match
+Erreur ligne : PSG, Arsenal, absent, 1 | Raison : For input string: "absent"
+Erreur ligne : Inter Milan, Arsenal, 1, | Raison : lignes corrompues
+Erreur ligne : AC Milan, Real Madrid, -1, 3 | Raison : Score negatif
+Erreur ligne : , Club Brugge, 0, 1 | Raison : Nom d'équipe manquant

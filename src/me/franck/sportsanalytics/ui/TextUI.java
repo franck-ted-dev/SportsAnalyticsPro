@@ -102,5 +102,8 @@ public class TextUI {
         System.out.println("TEAM RECORDS");
         Team team = league.getBestAttack();
         System.out.println("The best attack: " + team.getName() + " (" + StatisticsEngine.numberScoaredGoals(team) +" goals)");
+
+        team = league.getBestDefense();
+        System.out.println("The best defense: " + team.getName() + " (" + StatisticsEngine.numberConcecedGoals(team) +" goals)");
     }
 }

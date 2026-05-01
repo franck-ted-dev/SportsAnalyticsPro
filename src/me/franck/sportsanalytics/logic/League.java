@@ -95,12 +95,15 @@ public class League {
     }
 
     public Team getBestAttack(){
-        Team toReturn = Collections.max(teams.values(), Comparator.comparing(StatisticsEngine::numberScoaredGoals));
         return this.teams.values().stream()
                 .max(Comparator.comparing(StatisticsEngine::numberScoaredGoals)).get();
     }
 
     public boolean isEmpty(){
         return this.teams.isEmpty();
+    }
+
+    public Team getBestDefense(){
+        return this.teams.values().stream().min(Comparator.comparing(StatisticsEngine::numberConcecedGoals)).get();
     }
 }
