@@ -106,4 +106,19 @@ public class League {
     public Team getBestDefense(){
         return this.teams.values().stream().min(Comparator.comparing(StatisticsEngine::numberConcecedGoals)).get();
     }
+
+    public Team getBestGD(){
+        return this.teams.values().stream()
+                .max(Comparator.comparing(StatisticsEngine::differenceGoals)).get();
+    }
+
+    public Team bestWinRatio(){
+        return this.teams.values().stream()
+                .max(Comparator.comparing(StatisticsEngine::winRatio)).get();
+    }
+
+    public Team bestShowTeam(){
+        return this.teams.values().stream()
+                .max(Comparator.comparingDouble(StatisticsEngine::showIndex)).get();
+    }
 }

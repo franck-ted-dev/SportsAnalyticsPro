@@ -63,7 +63,7 @@ public class TextUI {
         System.out.println("Matches Played:   " + StatisticsEngine.numberMatches(team));
         System.out.println("Record:           " + StatisticsEngine.numberWins(team) + " Wins, " + StatisticsEngine.numberDraws(team) + " Draws, " + StatisticsEngine.numberLoses(team) + " Losses");
         System.out.println("Points:           " + StatisticsEngine.numberPoints(team));
-        System.out.println("Win Ratio:        " + StatisticsEngine.winRatio(team) + "%");
+        System.out.printf("Win Ratio:        %.2f%%\n",StatisticsEngine.winRatio(team));
         System.out.println("Goals:            " + StatisticsEngine.numberScoaredGoals(team) + " scored, " + StatisticsEngine.numberConcecedGoals(team) + " conceded");
         System.out.println("-----------------------------------------------------------------");
         return;
@@ -105,5 +105,14 @@ public class TextUI {
 
         team = league.getBestDefense();
         System.out.println("The best defense: " + team.getName() + " (" + StatisticsEngine.numberConcecedGoals(team) +" goals)");
+
+        team = league.getBestGD();
+        System.out.println("Top goal difference team: " + team.getName() + " (" + StatisticsEngine.differenceGoals(team) +" goals)");
+
+        team = league.bestShowTeam();
+        System.out.printf("Top show producer: " + team.getName() + " (%.2f goals/match)\n",StatisticsEngine.showIndex(team));
+
+        team = league.bestWinRatio();
+        System.out.printf("Top Win Ratio:" + team.getName() + " (%.2f%%)\n",StatisticsEngine.winRatio(team));
     }
 }

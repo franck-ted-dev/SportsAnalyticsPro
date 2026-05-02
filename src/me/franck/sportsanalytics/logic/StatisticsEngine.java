@@ -65,4 +65,9 @@ public class StatisticsEngine {
         }
         return team.getStatistics().getNumberScoredGoals()- team.getStatistics().getNumberConcededGoals();
     }
+
+    public static double showIndex(Team team){
+        return 1.0*(numberScoaredGoals(team)+numberConcecedGoals(team))/numberMatches(team);
+    }
+
 }
